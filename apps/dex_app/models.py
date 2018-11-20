@@ -1,60 +1,71 @@
 from django.db import models
 
 # Create your models here.
+class Abilities(models.Model):
+    name = models.CharField(max_length=25)
+    effect = models.CharField(max_length=255)
 
+class Types(models.Model):
+    tipe = models.CharField(max_length=15)
 
+class Damage_Relationships(models.Model):
+    type_ = models.ForeignKey(Types, related_name='damage_relationship')
+    double_from = models.ManyToManyField(Types, related_name='double_to')
+    double_to = models.ManyToManyField(Types, related_name='double_from')
+    half_from = models.ManyToManyField(Types, related_name='half_to')
+    half_to = models.ManyToManyField(Types, related_name='half_from')
+    none_from = models.ManyToManyField(Types, related_name='none_to')
+    none_to = models.ManyToManyField(Types, related_name='nome_from')
 
-class Evolution_Chain(models.Model):
-    baby_trigger_item = models.ForeignKey(Items, related_name='for_baby')
+class Damage_Types(models.Model):
+    name = models.CharField(max_length=25)
 
+class Moves(models.Model):
+    name = models.CharField(max_length=25)
+    type_ = models.ForeignKey(Types, related_name='moves')
+    category = models.ForeignKey(Damage_Types, related_name='moves')
+    pp = models.IntegerField()
+    power = models.IntegerField()
+    accuracy = models.IntegerField()
 
-class Pokemon_Species(models.Model):
-    name = models.CharField(max_lenth=25)
-    base_happiness = models.IntegerField()
-    capture_rate = models.IntegerField()
-    egg_groups = models.ManyToManyField(Egg_Groups, related_name='species')
-    evolution_trigger = models.CharField(max_length=25)
-    evolution_method = models.CharField(max_length=25)
+class Pokemon(models.Model):
+    name = models.CharField(max_length=30)
+    types = models.ManyToManyField(Types, related_name='pokemon')
+    abilities = models.ManyToManyField(Abilities, related_name='pokemon')
+    bst = models.IntegerField()
+    hp = models.IntegerField()
+    attack = models.IntegerField()
+    defense = models.IntegerField()
+    sp_attack = models.IntegerField()
+    sp_defense = models.IntegerField()
+    speed = models.IntegerField()
+
+class Learn_Methods(models.Model):
+    method = models.CharField(max_length=25)
+
+class Pokemon_Learns_Move_By_Method(models.Model):
+    pokemon = models.ForeignKey(Pokemon, related_name='learns_move_by_method')
+    move = models.ForeignKey(Moves, related_name='pokemon_learns_by_method')
+    method = models.ForeignKey(Learn_Methods, related_name='pokemon_learns_move_by')
+    meth_qual = models.CharField(max_length=10)
 
 class Entries(models.Model):
     entry_num = models.IntegerField()
-    pokemon_species = models.ForeignKey(Pokemon_Species, related_name='entry')
+    pokemon = models.ForeignKey(Pokemon, related_name='entry')
 
 class Pokedex(models.Model):
     name = models.CharField(max_length=25)
     entries = models.ManyToManyField(Entries, related_name='pokedex')
-    versions = models.ForeignKey
 
-
-class Regions(models.Model):
+class Versions(models.Model):
     name = models.CharField(max_length=25)
-    pokedexes = models.ManyToManyField(Pokedex, related_name='region')
-    versions = models.ForeignKey
+    move_learn_methods = models.ManyToManyField(Learn_Methods, related_name='version')
+    pokedexes = models.ManyToManyField(Pokedex, related_name='generation')
 
 class Generations(models.Model):
     gen = models.CharField(max_length=25)
-    main_region = models.ForeignKey(Regions, related_name='main_generation')
-    moves = models.ForeignKey
-    pokemon = models.ForeignKey
-    types = models.ForeignKey
-    versions = models.ForeignKey
-
-class Encounter_Condition_Values(models.Model): 
-    name = models.CharField(max_length=55)
-
-class Encounter_Condition(models.Model):
-    name = models.CharField(max_length=55)
-    value = models.ForeignKey(Encounter_Condition_Values, related_name='encounter_condition')
-
-class Encounter_Method(models.Model):
-    name = models.CharField(max_length=55)
-    desc = models.CharField(max_length=255)
-
-class Location_Areas(models.Model):
-    name = models.CharField(max_length=25)
-
-class Locations(models.Model):
-    name = models.CharField(max_length=55)
-    areas = models.ForeignKey(Location_Areas, related_name='location')
-    region = models.ManyToManyField(Regions, related_name='locations') 
-    generation = models.ForeignKey(Generations, related_name='locations')
+    abilities = models.ManyToManyField(Abilities, related_name='generation')
+    moves = models.ManyToManyField(Moves, related_name='generation')
+    pokemon = models.ManyToManyField(Pokemon, related_name='generation')
+    types = models.ManyToManyField(Types, related_name='generation')
+    versions = models.ForeignKey(Versions, related_name='generation')
