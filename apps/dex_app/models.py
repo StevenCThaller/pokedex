@@ -6,7 +6,7 @@ class Abilities(models.Model):
     effect = models.CharField(max_length=255)
 
 class Types(models.Model):
-    type_ = models.CharField(max_length=15)
+    tipe = models.CharField(max_length=15)
 
 class Damage_Relationships(models.Model):
     type_ = models.ForeignKey(Types, related_name='damage_relationship')
@@ -64,7 +64,8 @@ class Versions(models.Model):
 
 class Generations(models.Model):
     gen = models.CharField(max_length=25)
-    moves = models.ManyToManyField(Moves, related_name='generations')
-    pokemon = models.ManyToManyField(Pokemon, related_name='generations')
-    types = models.ManyToManyField(Types, related_name='generations')
+    abilities = models.ManyToManyField(Abilities, related_name='generation')
+    moves = models.ManyToManyField(Moves, related_name='generation')
+    pokemon = models.ManyToManyField(Pokemon, related_name='generation')
+    types = models.ManyToManyField(Types, related_name='generation')
     versions = models.ForeignKey(Versions, related_name='generation')
