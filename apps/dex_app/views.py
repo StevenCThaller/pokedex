@@ -3,17 +3,17 @@ from .models import *
 import pokebase as pb
 
 # Create your views here.
-def versionselect(request):
-    vers = []
-    for i in range(1, 17, 1):
-        ver = pb.version_group(i)
-        vers.append(ver)
+# def versionselect(request):
+#     vers = []
+#     for i in range(1, 17, 1):
+#         ver = pb.version_group(i)
+#         vers.append(ver)
     
-    context = {
-        'versions': vers
-    }
+#     context = {
+#         'versions': vers
+#     }
 
-    return render(request, 'dex_app/versionselect.html', context)
+#     return render(request, 'dex_app/versionselect.html', context)
 
 def dex_page(request, version, id):
     newdexstr=""
@@ -43,3 +43,13 @@ def dex_page(request, version, id):
     }
     return render(request, 'dex_app/dex_page.html', context)
 
+def pokedex(request):
+    pokedex = []
+    for i in range(1,2,1):
+        pokedex.append({'id': i,
+            'name': pb.pokemon(i).name,
+            'type': pb.pokemon(i).types})
+    context={
+        'pokedex': pokedex,
+    }
+    return render(request,'dex_app/pokedex.html', context)

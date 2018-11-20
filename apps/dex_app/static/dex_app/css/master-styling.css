@@ -63,3 +63,7 @@ body {
     margin-right: auto;
     text-align: center;
 }
+#table{
+    opacity: 16.6;
+    background-color: ghostwhite;
+}
