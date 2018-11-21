@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from .models import *
 import pokebase as pb
 
+
+
+
 # Create your views here.
 def versionselect(request):
     vers = []
@@ -43,3 +46,12 @@ def dex_page(request, version, id):
     }
     return render(request, 'dex_app/dex_page.html', context)
 
+def pokedex(request):
+    
+    return render(request,'dex_app/pokedex.html')
+
+def moveshow(request):
+    return render(request, 'dex_app/moveshow.html')
+
+def moves(request):
+    return render(request, 'dex_app/moves.html')

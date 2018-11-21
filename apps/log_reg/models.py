@@ -30,13 +30,13 @@ class UsersManager(models.Manager):
     def log_validator(self, postData):
         errors = {}
 
-        if len(Users.objects.filter(email=postData['l_email'])) < 1:
-            errors['l_email'] = "Invalid email, try again."
+        if len(Users.objects.filter(email=postData['email'])) < 1:
+            errors['email'] = "Invalid email, try again."
         
         else:
-            user = Users.objects.get(email=postData['l_email'])
-            if not bcrypt.checkpw(postData['l_pass'].encode(), user.password.encode()):
-                errors['l_pass'] = "Invalid password, please try again."
+            user = Users.objects.get(email=postData['email'])
+            if not bcrypt.checkpw(postData['password'].encode(), user.password.encode()):
+                errors['password'] = "Invalid password, please try again."
        
         return errors
 
