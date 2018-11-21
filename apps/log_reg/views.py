@@ -31,3 +31,15 @@ def add_user(request):
 
             return redirect('/')
     return redirect('/')
+
+def login(request):
+    if request.method=='POST':
+        errors = Users.objects.log_validator(request.POST)
+
+        if len(errors) > 0:
+            for tag, value in errors.items():
+                messages.error(request, value, extra_tags=tag)
+            return redirect('/register')
+        else:
+            
+            return redirect('/pokedex')

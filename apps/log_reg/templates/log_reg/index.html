@@ -11,7 +11,8 @@
 <body>
     <div class='container'>
         <img src="{% static 'log_reg/imgs/logo.png' %}" alt='Pokemon Logo'>
-        <form id='logreg' action='/login'>
+        <form id='logreg' action='/login' method='POST'>
+            {% csrf_token %}
             <div class='form-group'>
                 <input class='form-control' type='text' name='email' placeholder='example@example.com'>
             </div>
