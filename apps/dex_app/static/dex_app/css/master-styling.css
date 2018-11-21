@@ -12,7 +12,7 @@ body {
     background-position: 56.2% 35%;
 }
 
-.container {
+.boxee {
     width: 100%;
     height: 88%;
     position: relative;
@@ -20,7 +20,7 @@ body {
     margin-right: auto;
     overflow: auto;
 }
-    .container>img {
+    .boxee>img {
         margin-top: 25%;
         width: 90%;
         display: block;
@@ -66,4 +66,19 @@ body {
 #table{
     opacity: 16.6;
     background-color: ghostwhite;
+}
+
+#boxthis{
+    opacity: .90;
+    background-color: whitesmoke;
+    border: 6px solid #0a8bcc;
+    box-shadow: 3px 5px 3px grey;
+    border-radius: 50px;
+    padding: 15px 48px;
+}
+
+
+#moveslist{
+    max-height:500px;
+    overflow: auto;
 }

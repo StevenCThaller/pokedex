@@ -45,7 +45,7 @@ def dex_page(request, version, id):
 
 def pokedex(request):
     pokedex = []
-    for i in range(1,2,1):
+    for i in range(1,15,1):
         pokedex.append({'id': i,
             'name': pb.pokemon(i).name,
             'type': pb.pokemon(i).types})
@@ -53,3 +53,9 @@ def pokedex(request):
         'pokedex': pokedex,
     }
     return render(request,'dex_app/pokedex.html', context)
+
+def moveshow(request):
+    return render(request, 'dex_app/moveshow.html')
+
+def moves(request):
+    return render(request, 'dex_app/moves.html')

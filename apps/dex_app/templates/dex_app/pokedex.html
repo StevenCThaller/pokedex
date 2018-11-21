@@ -12,87 +12,87 @@
     </head>
     <body>
             
-        </nav>                 
-        <div class="container">
-            <div class="row">
-                <table class="table" id="table">
-                    <thead>
-                        <th> 
-                            <a href="#">Gen. 1</a>
-                        </th>
-                        <th>
-                            <a href="#">Gen. 2</a>
-                        </th>
-                        <th>
-                            <a href="#">Gen. 3</a>
-                        </th>
-                        
-                        <th> 
-                            <a href="#">Gen. 4</a>
-                        </th>
-                        <th>
-                            <a href="#">Gen. 5</a>
-                        </th>
-                        <th>
-                            <a href="#">Gen. 6</a>
-                        </th>
-                        <th>
-                            <a href="#">Gen. 7</a>
-                        </th>
-                    </thead>
-                </table>
-            </div>  
 
-            <form class="navbar-form navbar-left" action="/action_page.php">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-            </form>
-                
-            <div class="row">
-                <div class="table-responsive">
+            <div class="container">
+                <div class="row">
                     <table class="table" id="table">
                         <thead>
                             <th> 
-                                <span>No.</span>
+                                <a href="#">Gen. 1</a>
                             </th>
                             <th>
-                                <span>Pokemon</span>
+                                <a href="#">Gen. 2</a>
                             </th>
                             <th>
-                                <span>Types</span>
+                                <a href="#">Gen. 3</a>
+                            </th>
+                            
+                            <th> 
+                                <a href="#">Gen. 4</a>
+                            </th>
+                            <th>
+                                <a href="#">Gen. 5</a>
+                            </th>
+                            <th>
+                                <a href="#">Gen. 6</a>
+                            </th>
+                            <th>
+                                <a href="#">Gen. 7</a>
                             </th>
                         </thead>
-                        <tbody>
-                            {% for pokemon in pokedex %}
-                            <tr>
-                                <td>
-                                    {{pokemon.id}}
-                                </td>
-                                <td>
-                                    {{pokemon.name}}
-                                </td>
-                                <td>
-                                    {% for type in pokemon.type %}
-                                        {{type.type}}
-                                    {% endfor %}
-                                </td>
-                            </tr>
-                            {% endfor %}
-
-                        </tbody>
                     </table>
-                </div>
+                </div>  
+    
+                <form class="navbar-form navbar-left" action="/action_page.php">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                </form>
+                    
+                <div class="row" id="moveslist">
+                    <div class="table-responsive" id="table">
+                        <table class= "table">
+                            <thead>
+                                <th> 
+                                    <span>No.</span>
+                                </th>
+                                <th>
+                                    <span>Pokemon</span>
+                                </th>
+                                <th>
+                                    <span>Types</span>
+                                </th>
+                            </thead>
+                            <tbody>
+                                {% for pokemon in pokedex %}
+                                <tr>
+                                    <td>
+                                        {{pokemon.id}}
+                                    </td>
+                                    <td>
+                                        {{pokemon.name}}
+                                    </td>
+                                    <td>
+                                        {% for type in pokemon.type %}
+                                            {{type.type}}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+    
+                            </tbody>
+                        </table>
+                    </div>
             </div>
-        </div>
+        </div>                 
         <div id='navbar'>
             <a href='/pokedex'>
                 <img src="{% static 'dex_app/imgs/pokeball.png' %}" alt='View Pokedex'>
-            </a><a href='/moves'>
+            </a><a href='pokedex/moves'>
                 <img src="{% static 'dex_app/imgs/discs.png' %}" alt='View Moves'>
-            </a><a href='/types'>
+            </a><a href='pokedex/types'>
                 <img src="{% static 'dex_app/imgs/type.png' %}" alt='View Types'>
-            </a><a href='/teams'>
+            </a><a href='pokedex/teams'>
                 <img src="{% static 'dex_app/imgs/vs.png' %}" alt='Team Builder'>
             </a>
         </div>
