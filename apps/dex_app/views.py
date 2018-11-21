@@ -25,17 +25,11 @@ def dex_page(request, gen, id):
         newdexstr += "0"
     newdexstr = "/static/dex_app/imgs/"+newdexstr+dexstr+".png"
     version = Generations.objects.get(gen=gen).versions.all()
-    pokemon = pb.pokemon(id)
+    pokemon = Pokemon.objects.get(id=id)
 
-    moves = pokemon.moves
-    lvlmov = {}
-
-    for move in moves:
-        for vgd in move.version_group_details:
-            if vgd['version_group']['name'] == version and vgd['move_learn_method']['name'] == 'level-up':
-                lvlmov[vgd['level_learned_at']] = move.move 
-
-    lvlmov = dict(sorted(lvlmov.items()))
+    moves = Pokemon_Learns_Move_By_Method.objects.filter(pokemon=pokemon)
+    
+    
 
     
     context = {
@@ -43,8 +37,8 @@ def dex_page(request, gen, id):
         'version': version,
         'pokemon': pokemon,
         'picnum': newdexstr,
-        'lvlupmoves': lvlmov
     }
+    print(context['pokemon'].types)
     return render(request, 'dex_app/pokedexshow.html', context)
 
 def pokedex(request, gen):

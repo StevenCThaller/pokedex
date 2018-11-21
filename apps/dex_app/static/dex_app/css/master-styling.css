@@ -64,12 +64,19 @@ body {
     margin-right: auto;
     text-align: center;
 }
+#mon_name {
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    font-weight: bold;
+}
 
 #table{
-    opacity: 16.6;
+    opacity: 0.87;
     background-color: ghostwhite;
     height: 100%;
     overflow: auto;
+    border: 3px solid black;
+    box-shadow: 2px 2px 2px black;
 }
 
 #genbuts {

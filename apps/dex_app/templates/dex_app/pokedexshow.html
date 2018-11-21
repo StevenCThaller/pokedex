@@ -1,7 +1,7 @@
 <!DOCTYPE html>
     <head>
         <meta charset="utf-8">
-        <title>Pokedex</title>
+        <title>{{pokemon.name}}</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% load static %}
@@ -11,17 +11,17 @@
         
     </head>
     <header>
-        <h1 style="text-align: center;">Name</h1>
+        <h1 id='mon_name' style="text-align: center;">{{pokemon.name}}</h1>
     </header>
     <body>        
         <div id='navbar'>
             <a href='/pokedex/{{gen}}'>
                 <img src="{% static 'dex_app/imgs/pokeball.png' %}" alt='View Pokedex'>
-            </a><a href='/moves'>
+            </a><a href='/pokedex/moves'>
                 <img src="{% static 'dex_app/imgs/discs.png' %}" alt='View Moves'>
-            </a><a href='/types'>
+            </a><a href='/pokedex/types'>
                 <img src="{% static 'dex_app/imgs/type.png' %}" alt='View Types'>
-            </a><a href='/teams'>
+            </a><a href='/pokedex/teams'>
                 <img src="{% static 'dex_app/imgs/vs.png' %}" alt='Team Builder'>
             </a>
         </div>  
@@ -31,7 +31,7 @@
                     <table class="table" id="table">
                         <thead>
                             <th class="col-xs-5"> 
-                                <img src="{% static 'dex_app/imgs/001.png' %}" alt='View Pokemon' style="width:150px; height:150px;">
+                                <img id='mon_pic' src="{{picnum}}" alt='{{pokemon.name}}' style="width:150px; height:150px;">
                             </th>
                             <th class="col-xs-7">
                                 <div class="container">
@@ -42,8 +42,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="text-center">
-                                            {% for type in pokemon.types %}
-                                            <button type="button" class="btn btn-secondary btn-sm">{{pokemon.tipe}}</button>
+                                            {% for type in pokemon.types.all %}
+                                            <button type="button" class="type_but {{type.tipe}}">{{type.tipe}}</button>
                                             {% endfor %}
                                         </div> 
                                     </div>
@@ -74,7 +74,9 @@
             <div class="row">
                 <button class="accordion">Abilities</button>
                 <div class="panel nomargin">
-                    <p>Insert Abilites here</p>
+                    {% for ability in pokemon.abilities.all %}
+                        <p><b>{{ability.name}}:</b> {{ability.effect}}</p>
+                    {% endfor %}
                 </div>
                 <button class="accordion">Level Up Moves</button>
                 <div class="panel">
