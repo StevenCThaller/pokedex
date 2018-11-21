@@ -24,21 +24,21 @@ def dex_page(request, gen, id):
     while len(newdexstr) < (3-len(dexstr)):
         newdexstr += "0"
     newdexstr = "/static/dex_app/imgs/"+newdexstr+dexstr+".png"
-    version = Generations.objects.get(gen=gen).versions.all()
+    generation = Generations.objects.get(gen=gen)
     pokemon = Pokemon.objects.get(id=id)
 
     moves = Pokemon_Learns_Move_By_Method.objects.filter(pokemon=pokemon)
     
-    
+    versions = Versions.objects.filter(gen=generation)
 
+    print(Versions.objects.filter(gen=Generations.objects.get(gen='generation-vii')).values())
     
     context = {
         'gen': gen,
-        'version': version,
+        'versions': versions,
         'pokemon': pokemon,
         'picnum': newdexstr,
     }
-    print(context['pokemon'].types)
     return render(request, 'dex_app/pokedexshow.html', context)
 
 def pokedex(request, gen):

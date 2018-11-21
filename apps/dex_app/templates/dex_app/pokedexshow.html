@@ -80,7 +80,9 @@
                 </div>
                 <button class="accordion">Level Up Moves</button>
                 <div class="panel">
-                    <p>Insert Level Up Moves here</p>
+                    {% for version in versions %}
+                        <p>{{version.name}}</p>
+                    {% endfor %}
                 </div>
                 <button class="accordion">Egg Moves</button>
                 <div class="panel">

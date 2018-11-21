@@ -42,4 +42,4 @@ def login(request):
             return redirect('/register')
         else:
             
-            return redirect('/pokedex')
+            return redirect('/pokedex/generation-vii')
