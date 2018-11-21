@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <title>Pokedex</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% load static %}
+        <link rel='stylesheet' href="{% static 'dex_app/css/master-styling.css' %}">
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="{% static 'dex_app/js/master_JS.js' %}"></script>
+        
+    </head>
+    <header>
+        <h1 style="text-align: center;">Name</h1>
+    </header>
+    <body>          
+        <div class="container">
+            <div class="row" style="margin-top:40px;">
+                <div class="table-responsive">
+                    <table class="table" id="table">
+                        <thead>
+                            <th class="col-xs-5"> 
+                                <img src="{% static 'dex_app/imgs/001.png' %}" alt='View Pokemon' style="width:150px; height:150px;">
+                            </th>
+                            <th class="col-xs-7">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="text-center">
+                                            <span>NO</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="text-center">
+                                            <button type="button" class="btn btn-secondary btn-sm">Type 1</button>
+                                            <button type="button" class="btn btn-secondary btn-sm">Type 2</button>
+                                        </div> 
+                                    </div>
+                                    <div class="row">
+                                        <span>HP:</span>
+                                    </div>
+                                    <div class="row">
+                                        <span>Att</span>
+                                    </div>
+                                    <div class="row">
+                                        <span>Def</span>
+                                    </div>
+                                    <div class="row">
+                                        <span>Sp A</span>
+                                    </div>
+                                    <div class="row">
+                                        <span>Sp De</span>
+                                    </div>
+                                    <div class="row">
+                                        <span>Speed</span>
+                                    </div>
+                                </div>
+                            </th>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <button class="accordion">Abilities</button>
+                <div class="panel nomargin">
+                    <p>Insert Abilites here</p>
+                </div>
+                <button class="accordion">Level Up Moves</button>
+                <div class="panel">
+                    <p>Insert Level Up Moves here</p>
+                </div>
+                <button class="accordion">Egg Moves</button>
+                <div class="panel">
+                    <p>Insert Egg Moves here</p>
+                </div>
+            </div>
+        </div>
+        <div id='navbar'>
+            <a href='/pokedex'>
+                <img src="{% static 'dex_app/imgs/pokeball.png' %}" alt='View Pokedex'>
+            </a><a href='/moves'>
+                <img src="{% static 'dex_app/imgs/discs.png' %}" alt='View Moves'>
+            </a><a href='/types'>
+                <img src="{% static 'dex_app/imgs/type.png' %}" alt='View Types'>
+            </a><a href='/teams'>
+                <img src="{% static 'dex_app/imgs/vs.png' %}" alt='Team Builder'>
+            </a>
+        </div>
+        <script>
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+            
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.display === "block") {
+                        panel.style.display = "none";
+                    } else {
+                        panel.style.display = "block";
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
