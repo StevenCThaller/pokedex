@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    outline: 1px dotted red;
+    /* outline: 1px dotted red; */
 }
 
 body {
@@ -90,11 +90,27 @@ body {
     box-shadow: 3px 5px 3px grey;
     border-radius: 50px;
     padding: 15px 48px;
+    overflow: auto;
+    height: 25vh;
+    margin-bottom: 9vh;
 }
 
+#abillist {
+    width: 100vw;
+    max-height:15vh;
+    overflow: auto;
+}
+
+#allmoves {
+    width: 100vw;
+    height: 77vh;
+    overflow: auto;
+    border-bottom: none;
+}
 
 #moveslist{
-    max-height:500px;
+    width: 100vw;
+    height:46vh;
     overflow: auto;
 }
 
@@ -235,15 +251,18 @@ td {
 
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
+    height: 4vh;
     background-color: #eee;
     color: #444;
     cursor: pointer;
-    padding: 18px;
+    padding-left: 14px;
+    padding-right: 14px;
     width: 100%;
     text-align: left;
-    border: none;
+    border-top: 1px solid black;
     outline: none;
     transition: 0.4s;
+    border-bottom: 1px solid black;
 }
 
 /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
@@ -271,4 +290,46 @@ td {
 
 .active:after {
     content: "\25BE"; /* Unicode character for "minus" sign (-) */
+}
+
+.panel table {
+    width: 100%;
+}
+
+#learntab{
+    width: 100vw;
+    max-height:57vh;
+    overflow: auto;
+    opacity: 0.87;
+    background-color: ghostwhite;
+    overflow: auto;
+    border: 3px solid black;
+    box-shadow: 2px 2px 2px black;
+}
+
+#accord {
+    max-height: 47vh;
+    overflow: auto;
+}
+
+.typings_list {
+    width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.typings {
+    display: inline-block;
+}
+
+#typedamtable {
+    max-width: 98vw;
+    max-height: 50vh;
+    opacity: 0.87;
+    background-color: ghostwhite;
+    height: 100%;
+    border: 3px solid black;
+    box-shadow: 2px 2px 2px black;
+    overflow: auto;
 }

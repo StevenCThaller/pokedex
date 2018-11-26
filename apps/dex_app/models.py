@@ -46,8 +46,6 @@ class Pokemon(models.Model):
 class Learn_Methods(models.Model):
     method = models.CharField(max_length=25)
 
-
-
 class Generations(models.Model):
     gen = models.CharField(max_length=25)
     dex_to = models.IntegerField()
@@ -63,5 +61,5 @@ class Pokemon_Learns_Move_By_Method(models.Model):
     pokemon = models.ForeignKey(Pokemon, related_name='learns_move_by_method')
     move = models.ForeignKey(Moves, related_name='pokemon_learns_by_method')
     method = models.ForeignKey(Learn_Methods, related_name='pokemon_learns_move_by')
-    meth_qual = models.CharField(max_length=10)
+    meth_qual = models.IntegerField()
     version = models.ForeignKey(Versions, related_name='pokemon_learns_move_by_method')

@@ -11,49 +11,54 @@
         </script>
     </head>
     <body>
+    <div id='navbar'>
+        <a href='/pokedex/generation-vii'>
+            <img src="{% static 'dex_app/imgs/pokeball.png' %}" alt='View Pokedex'>
+        </a>
+        <a href='/pokedex/moves/generation-vii'>
+            <img src="{% static 'dex_app/imgs/discs.png' %}" alt='View Moves'>
+        </a>
+        <a href='/pokedex/types'>
+            <img src="{% static 'dex_app/imgs/type.png' %}" alt='View Types'>
+        </a>
+        <a href='/pokedex/teams'>
+            <img src="{% static 'dex_app/imgs/vs.png' %}" alt='Team Builder'>
+        </a>
+    </div> 
     <div class="container">
-            <div class="row">
-                <div class="text-center">
-                    <h2 id="table">MOVE NAME</h1>
-                </div>
+        <div class='row'>
+            <div class='text-center'>
+                <h2 id='table'>{{move.name|title}}</h2>
             </div>
-            <div class="row">
-                <div class="col-xs-6">
-                    <div class="text-center">
-                        <button type="button" class="btn">Types</button>
-                    </div>
-                </div>
-                <div class="col-xs-6">
-                    <div class="text-center" style="margin-bottom:10%;">
-                        <button type="button" class="btn">Category</button>
-                    </div>
-                </div>
-            </div>
+        </div>
         <div id="boxthis">
             <div class="row opass">
                 <div class="col-xs-4">
                     <div class="row">
-                        <h4>PP:</h4>  
+                        <p><b>PP:</b> {{move.pp}}</p>  
                     </div>
                     <div class="row">
-                        <h4>Power: </h4>
+                        <p><b>Power:</b> {{move.power}}</p>
                     </div>
                     <div class="row">
-                        <h4>Acc: </h4>
+                        <p><b>Acc:</b> {{move.accuracy}}</p>
                     </div>
                 </div>    
                 <div class="col-xs-8 opass">
+                    <div class='row'>
+                            <a href='/pokedex/types/{{move.tipe.tipe}}'><button class='type_but {{move.tipe.tipe}}'>{{move.tipe.tipe}}</button></a>
+                    </div>
                     <div class="row">
                         <h4>Description</h4>
                     </div>
                     <div class="row">
-                        <span>PUT YOUR INFO IN HERE :D</span>
+                        <span>{{move.description}}</span>
                     </div>
                 </div>
             </div>
         </div>
             <div class="row" id="moveslist">
-                    <div class="table-responsive" id="table">
+                    <div class="table-responsive" id="learntab">
                         <table class="table">
                             <thead>
                                 <tr>
@@ -63,63 +68,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                              <tr>
-                                <td>
-
-                                    hello
-                                </td>  
-                              </tr>
-                              <tr>
-                                    <td>
-    
-                                        hello
+                            {% for pokemon in all_pokemon %}
+                                <tr>
+                                    <td class='text-center'>
+                                        <a href='/pokedex/{{gen}}/{{pokemon.id}}'>{{pokemon.name}}</a>
                                     </td>  
-                                  </tr>
-                                  <tr>
-                                        <td>
-        
-                                            hello
-                                        </td>  
-                                      </tr>
-                                      <tr>
-                                            <td>
-            
-                                                hello
-                                            </td>  
-                                          </tr>
-                                          <tr>
-                                                <td>
-                
-                                                    hello
-                                                </td>  
-                                              </tr>
-                                              <tr>
-                                                    <td>
-                    
-                                                        hello
-                                                    </td>  
-                                                  </tr>
-                                                  <tr>
-                                                        <td>
-                        
-                                                            hello
-                                                        </td>  
-                                                      </tr>
-                                                      <tr>
-                                                            <td>
-                            
-                                                                hello
-                                                            </td>  
-                                                          </tr>
-                                                          <tr>
-                                                                <td>
-                                
-                                                                    hello
-                                                                </td>  
-                                                              </tr>
-
-
-
+                              </tr>
+                              {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -127,21 +82,4 @@
             </div>
     </div>
     </body>
-
-    
-
-
-        <div id='navbar'>
-            <a href='/pokedex'>
-                <img src="{% static 'dex_app/imgs/pokeball.png' %}" alt='View Pokedex'>
-            </a><a href='/moves'>
-                <img src="{% static 'dex_app/imgs/discs.png' %}" alt='View Moves'>
-            </a><a href='/types'>
-                <img src="{% static 'dex_app/imgs/type.png' %}" alt='View Types'>
-            </a><a href='/teams'>
-                <img src="{% static 'dex_app/imgs/vs.png' %}" alt='Team Builder'>
-            </a>
-        </div>
-
-
 </html>
